@@ -1,7 +1,7 @@
 package com.georgetedeev.inventoryservice.controllers;
 
 
-import com.georgetedeev.inventoryservice.enteties.Inventory;
+import com.georgetedeev.inventoryservice.dto.InventoryDTO;
 import com.georgetedeev.inventoryservice.services.GetAllLeftoversService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +19,8 @@ public class GetAllLeftoversController {
     GetAllLeftoversService getAllLeftoversService;
 
     @GetMapping("/leftovers")
-    public ResponseEntity<List<Inventory>> getAllLeftovers(){
-
-        List<Inventory> allLeftovers =  getAllLeftoversService.getAllLeftovers();
+    public ResponseEntity<List<InventoryDTO>> getAllLeftovers(){
+        List<InventoryDTO> allLeftovers =  getAllLeftoversService.getAllLeftovers();
 
         return ResponseEntity.ok(allLeftovers);
     }

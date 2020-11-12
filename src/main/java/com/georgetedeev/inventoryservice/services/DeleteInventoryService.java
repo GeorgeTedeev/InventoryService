@@ -9,14 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetInventoryByNameAndBrandService {
+public class DeleteInventoryService {
 
     @Autowired
     InventoryRepo inventoryRepo;
 
-    public InventoryDTO getInventoryByNameAndBrand(InventoryDTOWithNameAndBrand inventoryDTOWithNameAndBrand){
-        Inventory inventory = inventoryRepo.findByNameAndBrand(inventoryDTOWithNameAndBrand.getName(),
-                                                               inventoryDTOWithNameAndBrand.getBrand());
+    public InventoryDTO deleteInventory(InventoryDTOWithNameAndBrand inventoryDTOWithNameAndBrand){
+        String name = inventoryDTOWithNameAndBrand.getName();
+        String brand = inventoryDTOWithNameAndBrand.getBrand();
+
+        Inventory inventory = inventoryRepo.findByNameAndBrand(name, brand);
+
+        inventoryRepo.delete(inventory);
+
         InventoryDTO inventoryDTO = MapperForDTO.convertToDTO(inventory);
 
         return inventoryDTO;

@@ -21,6 +21,4 @@ public class GetInventoryByNameAndBrandController {
 
         return ResponseEntity.ok(inventoryDTO);
     }
-
-
 }
